@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemoViewController: UIViewController {
+class MemoViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var contentTextView: UITextView!
@@ -20,11 +20,13 @@ class MemoViewController: UIViewController {
         
         titleTextField.text = saveDate.object(forKey: "title") as? String
         contentTextView.text = saveDate.object(forKey: "content") as? String
+        titleTextField.delegate = self
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func saveMemo() {
+        
         //UserDefaultsに書き込む
         saveDate.set(titleTextField.text, forKey: "title")
         saveDate.set(titleTextField.text, forKey: "content")
@@ -39,14 +41,19 @@ class MemoViewController: UIViewController {
                 style: .default,
                 handler: { action in
                     //ボタンが押されたときの動作
+                    self.navigationController?.popViewController(animated: true)
                     print("OKボタンが押されました！")
-                    
             }
         )
-    )
+      )
+      present(alert, animated: true, completion: nil)
         
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
