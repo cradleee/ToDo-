@@ -14,6 +14,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var contentTextView: UITextView!
     
     var saveDate : UserDefaults = UserDefaults.standard
+    var memoArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,38 +27,51 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveMemo() {
-        
         //UserDefaultsに書き込む
-        saveDate.set(titleTextField.text, forKey: "title")
-        saveDate.set(titleTextField.text, forKey: "content")
-        
-        //alertを出す
-        let alert: UIAlertController = UIAlertController(title: "保存", message: "メモが完了しました。", preferredStyle: .alert)
-        
-        //OKボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "OK",
-                style: .default,
-                handler: { action in
-                    //ボタンが押されたときの動作
-                    self.navigationController?.popViewController(animated: true)
-                    print("OKボタンが押されました！")
+        //if saveDate.object(forKey: "memo") == nil {
+            //return
+            
+        //}else{
+            
+            //memoArray = saveDate.object(forKey: "memo") as! [String]
+            
+            //memoArray.append(String(describing: titleTextField.text))
+            
+            saveDate.set(memoArray, forKey: "memo")
+            
+            //alertを出す
+            let alert: UIAlertController = UIAlertController(title: "保存", message: "メモが完了しました。", preferredStyle: .alert)
+            
+            //OKボタン
+            alert.addAction(
+                UIAlertAction(
+                    title: "OK",
+                    style: .default,
+                    handler: { action in
+                        //ボタンが押されたときの動作
+                        self.navigationController?.popViewController(animated: true)
+                        print("OKボタンが押されました！")
+                }
+                )
+            )
+            present(alert, animated: true, completion: nil)
+            
+            func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+                textField.resignFirstResponder()
+                return true
             }
-        )
-      )
-      present(alert, animated: true, completion: nil)
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return true
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    //override func didReceiveMemoryWarning() {
+        //super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    //}
+    
+    //画面遷移
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //var ViewController:ViewController =
+    //}
     
 
     /*
@@ -70,4 +84,4 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     }
     */
 
-}
+//}
