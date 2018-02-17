@@ -12,18 +12,28 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var contentTextView: UITextView!
+    @IBOutlet weak var paramLabel: UILabel!
+    
+    //パラーメータ受取用プロパティ
+    var param:String = "init param"
     
     var saveDate : UserDefaults = UserDefaults.standard
     var todoArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ///パラメータのバインド
+        self.paramLabel.text = self.param
         
         titleTextField.text = saveDate.object(forKey: "title") as? String
         contentTextView.text = saveDate.object(forKey: "content") as? String
         titleTextField.delegate = self
 
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func backFromView(segue:UIStoryboardSegue){
+        NSLog("MemoViewController#backFromView")
     }
     
     @IBAction func saveMemo() {
@@ -69,10 +79,14 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     }
     
     //画面遷移
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //var ViewController:ViewController =
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var MemoViewController:MemoViewController = segue.destinationViewController as
+            MemoViewController.param = self.paramText.text
     }
     
+    func shouldPerformSegue(withIdentifier: String?, sender: AnyObject?)
+    return true
+   
 
     /*
     // MARK: - Navigation

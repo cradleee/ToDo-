@@ -25,11 +25,16 @@ class ViewController: UIViewController, UITableViewDataSource {
         //memoNameArrayにメモの題名を入れていく
         memoNameArray = ["メモ", "メモ２", "メモ３"]
     }
+    
+    @IBAction func backFromMemoView(segue:UIStoryboardSegue){
+        NSLog("ViewController#backFromMemoView")
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     //セルの数を設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
