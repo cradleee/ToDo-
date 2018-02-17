@@ -12,10 +12,10 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var contentTextView: UITextView!
-    @IBOutlet weak var paramLabel: UILabel!
+   //@IBOutlet weak var paramLabel: UILabel!
     
     //パラーメータ受取用プロパティ
-    var param:String = "init param"
+    //var param:String = "init param"
     
     var saveDate : UserDefaults = UserDefaults.standard
     var todoArray = [String]()
@@ -23,7 +23,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         ///パラメータのバインド
-        self.paramLabel.text = self.param
+        //self.paramLabel.text = self.param
         
         titleTextField.text = saveDate.object(forKey: "title") as? String
         contentTextView.text = saveDate.object(forKey: "content") as? String
@@ -79,13 +79,13 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     }
     
     //画面遷移
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var MemoViewController:MemoViewController = segue.destinationViewController as
-            MemoViewController.param = self.paramText.text
+    //override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //var MemoViewController:MemoViewController = segue.destinationViewController as
+            //MemoViewController.param = self.paramText.text
     }
     
-    func shouldPerformSegue(withIdentifier: String?, sender: AnyObject?)
-    return true
+    //func shouldPerformSegue(withIdentifier: String?, sender: AnyObject?)
+    //return true
    
 
     /*
@@ -98,4 +98,3 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     }
     */
 
-}
