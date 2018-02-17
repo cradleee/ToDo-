@@ -14,7 +14,7 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var contentTextView: UITextView!
     
     var saveDate : UserDefaults = UserDefaults.standard
-    var memoArray = [String]()
+    var todoArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +28,16 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveMemo() {
         //UserDefaultsに書き込む
-        //if saveDate.object(forKey: "memo") == nil {
-            //return
+        if saveDate.object(forKey: "todo") == nil {
+            return
             
-        //}else{
+        }else{
             
-            //memoArray = saveDate.object(forKey: "memo") as! [String]
+            todoArray = saveDate.object(forKey: "todo") as! [String]
             
-            //memoArray.append(String(describing: titleTextField.text))
+            todoArray.append(String(describing: titleTextField.text))
             
-            saveDate.set(memoArray, forKey: "memo")
+            saveDate.set(todoArray, forKey: "todo")
             
             //alertを出す
             let alert: UIAlertController = UIAlertController(title: "保存", message: "メモが完了しました。", preferredStyle: .alert)
@@ -63,15 +63,15 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //override func didReceiveMemoryWarning() {
-        //super.didReceiveMemoryWarning()
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    //}
+    }
     
     //画面遷移
-    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //var ViewController:ViewController =
-    //}
+    }
     
 
     /*
@@ -84,4 +84,4 @@ class MemoViewController: UIViewController, UITextFieldDelegate {
     }
     */
 
-//}
+}
