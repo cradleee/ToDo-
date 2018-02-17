@@ -29,6 +29,22 @@ class MemoViewController: UIViewController {
         saveDate.set(titleTextField.text, forKey: "title")
         saveDate.set(titleTextField.text, forKey: "content")
         
+        //alertを出す
+        let alert: UIAlertController = UIAlertController(title: "保存", message: "メモが完了しました。", preferredStyle: .alert)
+        
+        //OKボタン
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: { action in
+                    //ボタンが押されたときの動作
+                    print("OKボタンが押されました！")
+                    
+            }
+        )
+    )
+        
     }
 
     override func didReceiveMemoryWarning() {
